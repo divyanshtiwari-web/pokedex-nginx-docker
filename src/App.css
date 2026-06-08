@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  padding: 20px;
+}
+
+.layout {
+  display: flex;
+  gap: 30px;
+}
+
+.pokemon-list {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemon-list button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.details {
+  flex: 1;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+img {
+  width: 150px;
+}

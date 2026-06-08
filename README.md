@@ -1,16 +1,92 @@
-# React + Vite
+# Pokedex Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based Pokédex application that fetches Pokémon data from the PokeAPI and displays detailed information for selected Pokémon.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Fetches the first 20 Pokémon from the PokeAPI
+* Displays Pokémon name and ID
+* Displays Pokémon sprite image
+* Displays Pokémon types
+* Displays Pokémon abilities
+* Displays Pokémon base stats
+* Loading and error handling
+* Custom CSS styling
+* HTTPS enabled using Nginx and a self-signed TLS certificate
+* Multi-stage Docker build
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React
+* Vite
+* Docker
+* Docker Compose
+* Nginx
+* OpenSSL
+* PokeAPI
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+.
+├── src/
+├── public/
+├── Dockerfile
+├── docker-compose.yml
+├── nginx.conf
+├── certs/
+└── README.md
+```
+
+## Build and Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/divyanshtiwari-web/pokedex-nginx-docker.git
+cd pokedex-nginx-docker
+```
+
+Start the application:
+
+```bash
+docker compose up -d --build
+```
+
+Access the application:
+
+```text
+https://localhost
+```
+
+A browser warning may appear because the certificate is self-signed. Proceed to the site to continue.
+
+## Docker Services
+
+### Application Container
+
+Serves the React build on port 80 inside the container.
+
+### Nginx Reverse Proxy
+
+* Listens on port 443
+* Terminates TLS/SSL
+* Redirects HTTP traffic on port 80 to HTTPS
+* Proxies requests to the React application container
+
+## API Used
+
+PokeAPI
+
+Base URL:
+
+```text
+https://pokeapi.co/api/v2/
+```
+
+Endpoints:
+
+```text
+GET /pokemon?limit=20
+GET /pokemon/{name}
+```
